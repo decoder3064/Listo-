@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import {prisma} from "../utils/prisma.js"
+import { prisma } from "../utils/prisma.js";
 
 export const protect = async (req, res, next) =>{
     let token;

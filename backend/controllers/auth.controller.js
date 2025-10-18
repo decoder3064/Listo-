@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import {prisma} from "../utils/prisma";
-import { generateToken } from "../utils/generateToken";
+import prisma  from "../utils/prisma.js";
+import { generateToken } from "../utils/generateToken.js";
 
 
 export const registerUser = async (req, res) => {
