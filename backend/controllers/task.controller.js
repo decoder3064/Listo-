@@ -91,7 +91,7 @@ export const deleteTask = async (req, res) => {
         }
 
         if(task.userId !== userId){
-
+            
              return res.status(403).json({ message: "Not authorized to delete this task" });
 
         }
@@ -102,6 +102,6 @@ export const deleteTask = async (req, res) => {
     } catch (error) {
 
         return res.status(500).json({ message: "Error deleting task" });
-        
+
     }
 };
