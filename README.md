@@ -288,6 +288,29 @@ Open your browser and navigate to:
 http://localhost:5173
 ```
 
+### 🧪 Testing the Application
+
+**Create a test account:**
+
+Since there's no email verification, you can use any email format to register:
+
+1. Go to the **Register** page
+2. Use these test credentials (or create your own):
+   - **Name:** `Test User`
+   - **Email:** `test@example.com` (any valid email format works)
+   - **Password:** `testpassword123` (minimum 8 characters)
+   - **Confirm Password:** `testpassword123`
+
+3. Click **Register** - you'll be automatically logged in
+4. Start creating tasks!
+
+**For subsequent logins**, use the same credentials you registered with.
+
+**Note:** 
+- ✉️ No actual emails are sent - email validation is format-only
+- 🔒 Passwords are securely hashed with bcrypt
+- 🗄️ Each user's database is independent (local or Prisma Cloud)
+
 ---
 
 ## 🗂️ Project Structure
@@ -448,6 +471,7 @@ npm run lint
 - ✅ Protected routes
 - ✅ Password hashing with bcrypt
 - ✅ Form validation
+- ✅ No email verification required (format validation only)
 
 ---
 
@@ -616,9 +640,9 @@ ISC
 ---
 
 ## 👤 Author
-- David Reyes 
 
-**Vitrinnea Assessment Project**
+**David Reyes**  
+Vitrinnea Technical Assessment Project
 
 ---
 
