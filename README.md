@@ -61,6 +61,8 @@ git clone <your-repository-url>
 cd Listo-
 ```
 
+**⚠️ Important:** The `.env` file is not included in the repository for security reasons. You'll need to create it in the next steps.
+
 ---
 
 ## Option 1: Prisma Cloud (Recommended - Easier Setup)
@@ -79,24 +81,36 @@ npm install
 
 ### Step 2: Configure Environment Variables
 
-Prisma has already auto-generated a `DATABASE_URL` for you. You just need to verify it exists and add your JWT secret.
+**Create a `.env` file** in the `backend` directory:
 
-Check if `.env` file exists in the `backend` directory. It should contain something like:
-```env
-DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=YOUR_API_KEY"
+```bash
+# Create the .env file
+touch .env
 ```
 
-Add the following to your `.env` file (keep the existing DATABASE_URL):
-```env
-# Keep your existing DATABASE_URL - it should look like:
-# DATABASE_URL="prisma+postgres://..."
+Or create it manually in your code editor.
 
-# Add these:
+**Add the following to your `.env` file:**
+
+```env
+# Database Connection - Prisma Cloud
+# Run this command first to get your connection string:
+# npx prisma init --datasource-provider postgresql
+
+DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=YOUR_API_KEY"
+
+# JWT Secret (REQUIRED - change this!)
 JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
+
+# Server Port
 PORT=3000
 ```
 
-**Replace** `your-super-secret-jwt-key-change-this-in-production` with a secure random string.
+**Important Notes:**
+- If you don't have a Prisma Cloud database URL yet, run: `npx prisma init --datasource-provider postgresql`
+- This will generate a `.env` file with a Prisma connection string
+- **Replace** `your-super-secret-jwt-key-change-this-in-production` with a secure random string
+- You can generate a secure secret with: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
 
 ### Step 3: Set up Prisma
 
@@ -176,13 +190,25 @@ npm install
 
 ### Step 4: Configure Environment Variables
 
-Create or update the `.env` file in the `backend` directory with your LOCAL PostgreSQL credentials:
+**Create a `.env` file** in the `backend` directory:
+
+```bash
+# Create the .env file
+touch .env
+```
+
+Or create it manually in your code editor.
+
+**Add your LOCAL PostgreSQL credentials to the `.env` file:**
 
 ```env
-# Replace the existing DATABASE_URL with your local PostgreSQL connection:
+# Database Connection - Local PostgreSQL
 DATABASE_URL="postgresql://your_username:your_password@localhost:5432/listo_db"
 
+# JWT Secret (REQUIRED - change this!)
 JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
+
+# Server Port
 PORT=3000
 ```
 
@@ -190,6 +216,17 @@ PORT=3000
 - `your_username` with your PostgreSQL username (default is often `postgres`)
 - `your_password` with your PostgreSQL password
 - `listo_db` with your database name (if different)
+
+**Generate a secure JWT secret:**
+```bash
+# Option 1: Use Node.js
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+# Option 2: Use OpenSSL
+openssl rand -hex 32
+```
+
+Copy the output and use it as your `JWT_SECRET`.
 
 ### Step 5: Set up Prisma
 
@@ -579,7 +616,7 @@ ISC
 ---
 
 ## 👤 Author
-- David Reyes
+- David Reyes 
 
 **Vitrinnea Assessment Project**
 
