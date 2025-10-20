@@ -22,7 +22,7 @@ export const AuthProvider = ({children}) =>{
             const response = await authAPI.register(userData);
             const {token, ...userInfo } = response.data
 
-            localStorage.setItem('token', `Bearer ${token}`);
+            localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(userInfo));
             setUser(userInfo);
             return { success: true };
@@ -38,7 +38,7 @@ export const AuthProvider = ({children}) =>{
             const response = await authAPI.login(credentials);
             const {token, ...userInfo } = response.data;
 
-            localStorage.setItem('token', `Bearer ${token}`);
+            localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(userInfo));
             setUser(userInfo);
 
