@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from 'frontend/frontend/src/context/AuthContext.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
 import { useNavigate, Link } from 'react-router-dom';
 
 
