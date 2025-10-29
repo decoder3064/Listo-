@@ -11,7 +11,13 @@ const app = express();
 
 //Middleware 
 app.use(express.json()); 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://your-frontend-production-xxxx.up.railway.app' // Add your Railway frontend URL here
+  ],
+  credentials: true
+}));
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
